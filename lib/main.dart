@@ -315,12 +315,19 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           width: 500,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Stack(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Positioned(
-                  left: 0,
-                  top: 0,
-                  bottom: 0,
+                // Area Code Dropdown
+                Container(
+                  width: 80, // Adjust the width as needed
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Color(0xFF9e1c20), // Set the outline color to black
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.horizontal(left: Radius.circular(50)),
+                  ),
                   child: DropdownButton<String>(
                     value: selectedAreaCode,
                     onChanged: (String? newValue) {
@@ -331,18 +338,38 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     items: areaCodes.map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(value),
+                        ),
                       );
                     }).toList(),
                   ),
                 ),
-                Positioned(
-                  left: 50,
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
 
-                  child: _buildTextField('Phone Number', phoneNumberController, keyboardType: TextInputType.number),
+                // Phone Number TextField
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color(0xFF9e1c20), // Set the outline color to black
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.horizontal(right: Radius.circular(50)),
+                    ),
+                    child: TextField(
+                      controller: phoneNumberController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Phone Number',
+                        hintStyle: GoogleFonts.pressStart2p(),
+                      ),
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -452,7 +479,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         obscureText: obscureText,
         decoration: InputDecoration(
           border: InputBorder.none,
-          labelText: labelText,
+          hintText: controller.text.isEmpty ? labelText : '',
+          hintStyle: GoogleFonts.pressStart2p(),
         ),
         keyboardType: keyboardType,
         inputFormatters: <TextInputFormatter>[
@@ -462,4 +490,5 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
     );
   }
+
 }

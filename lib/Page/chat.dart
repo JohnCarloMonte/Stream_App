@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// Import your Message.dart file
+import 'package:google_fonts/google_fonts.dart';
 
 class Chat extends StatefulWidget {
   const Chat({Key? key}) : super(key: key);
@@ -13,14 +13,20 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF9e1c20),
+        backgroundColor: Colors.transparent, // Set the background color to transparent
+        elevation: 0, // Remove the shadow
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
             // Handle menu icon press
           },
         ),
-        title: Text("Chat"),
+        title: Text(
+          "Chat",
+          style: GoogleFonts.pressStart2p(
+            color: Color(0xFF9e1c20),
+          ),
+        ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -30,60 +36,72 @@ class _ChatState extends State<Chat> {
             },
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0), // Adjust the height as needed
+          child: Container(
+            color: Color(0xFF9e1c20), // Set the color for the bottom outline
+            height: 2.0,
+          ),
+        ),
       ),
-      body: Container(
-        color: Colors.white,
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: 20.0, left: 16.0),
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Friends",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 20.0, left: 16.0),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Friends",
+                  style: GoogleFonts.pressStart2p(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            Container(
-              height: 80.0,
-              margin: EdgeInsets.symmetric(horizontal: 16.0),
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CircleAvatar(
-                      radius: 30.0,
-                      backgroundColor: Colors.blue,
-                      // You can set user images here
+              Container(
+                height: 80.0,
+                margin: EdgeInsets.symmetric(horizontal: 16.0),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 30.0,
+                        backgroundColor: Colors.blue,
+                        // You can set user images here
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(5.0),
+                    topRight: Radius.circular(5.0),
+                  ),
+                ),
+                width: double.infinity,
+                height: 442.0,
+                child: ListView(
+                  children: [
+                    // Dummy message layout with outline
+                    _buildMessageLayout("User 1", "This is a sample message."),
+                    _buildMessageLayout(
+                      "User 2",
+                      "This is a very long message that will be shortened by replacing the overflowed text with ...",
                     ),
-                  );
-                },
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(5.0),
-                  topRight: Radius.circular(5.0),
+                    // Add more messages as needed
+                  ],
                 ),
               ),
-              width: double.infinity,
-              height: 442.0,
-              child: ListView(
-                children: [
-                  // Dummy message layout with outline
-                  _buildMessageLayout("User 1", "This is a sample message."),
-                  _buildMessageLayout("User 2", "This is a very long message that will be shortened by replacing the overflowed text with ..."),
-                  // Add more messages as needed
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -93,7 +111,6 @@ class _ChatState extends State<Chat> {
     return GestureDetector(
       onTap: () {
         // Handle the click event, navigate to Message.dart
-
       },
       child: Container(
         decoration: BoxDecoration(
@@ -115,13 +132,14 @@ class _ChatState extends State<Chat> {
                 children: [
                   Text(
                     userName,
-                    style: TextStyle(
+                    style: GoogleFonts.pressStart2p(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     message,
+                    style: GoogleFonts.pressStart2p(),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
