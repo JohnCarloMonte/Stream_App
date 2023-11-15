@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projecthit/Community.dart';
 import 'package:projecthit/Leaderboards.dart';
-import 'package:projecthit/Page/Followers.dart';
 import 'package:projecthit/Page/chat.dart';
+import 'package:projecthit/Page/Follower.dart';
 import 'package:projecthit/Page/dashboard.dart';
 import 'package:projecthit/Page/profile.dart';
 

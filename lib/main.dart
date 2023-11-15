@@ -95,67 +95,148 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 100),
-            Align(
-              alignment: Alignment.center,
-              child: Image.asset(
-                'Icons/Hit_Logo.png',
-                width: 100,
-                height: 100,
-              ),
-            ),
-            const SizedBox(height: 50),
-            Padding(
-              padding: const EdgeInsets.only(left: 5.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: () {
-                      _handleImageTap(0);
-                    },
-                    child: _buildImageButton(
-                      'Icons/SignUp_Active.png',
-                      'Icons/SignUp_inactive.png',
-                      isImageClicked[0],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      _handleImageTap(1);
-                    },
-                    child: _buildImageButton(
-                      'Icons/Log-In_Active.png',
-                      'Icons/Log-In_inactive.png',
-                      isImageClicked[1],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 5),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (!isSignUpSelected)
-                      _buildLoginFields(),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            // Check the screen width to determine the layout
+            bool isWideScreen = constraints.maxWidth > 800; // Adjust the threshold as needed
 
-                    if (isSignUpSelected)
-                      _buildSignUpFields(),
-                  ],
-                ),
-              ),
-            ),
-          ],
+            return isWideScreen
+                ? _buildWideScreenLayout()
+                : _buildNormalScreenLayout();
+          },
         ),
       ),
     );
   }
+
+  Widget _buildNormalScreenLayout() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 20),
+        Align(
+          alignment: Alignment.center,
+          child: Image.asset(
+            'Icons/Hit_Logo.png',
+            width: 100,
+            height: 100,
+          ),
+        ),
+        const SizedBox(height: 50),
+        Padding(
+          padding: const EdgeInsets.only(left: 5.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              GestureDetector(
+                onTap: () {
+                  _handleImageTap(0);
+                },
+                child: _buildImageButton(
+                  'Icons/SignUp_Active.png',
+                  'Icons/SignUp_inactive.png',
+                  isImageClicked[0],
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  _handleImageTap(1);
+                },
+                child: _buildImageButton(
+                  'Icons/Log-In_Active.png',
+                  'Icons/Log-In_inactive.png',
+                  isImageClicked[1],
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 5),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (!isSignUpSelected) _buildLoginFields(),
+                if (isSignUpSelected) _buildSignUpFields(),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildWideScreenLayout() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end, // Center the entire row horizontally
+      crossAxisAlignment: CrossAxisAlignment.end, // Center the entire row vertically
+      children: [
+
+        Container(
+          padding: const EdgeInsets.only(left: 200),
+          child: Align(
+
+            child: Image.asset(
+              'Icons/Hit_Logo.png',
+              width: 300,
+              height: 300,
+            ),
+          ),
+        ),
+        // 2nd row with other elements
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 170),
+              Padding(
+                padding: const EdgeInsets.only(left: 5.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {
+                        _handleImageTap(0);
+                      },
+                      child: _buildImageButton(
+                        'Icons/SignUp_Active.png',
+                        'Icons/SignUp_inactive.png',
+                        isImageClicked[0],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _handleImageTap(1);
+                      },
+                      child: _buildImageButton(
+                        'Icons/Log-In_Active.png',
+                        'Icons/Log-In_inactive.png',
+                        isImageClicked[1],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 5),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (!isSignUpSelected) _buildLoginFields(),
+                      if (isSignUpSelected) _buildSignUpFields(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
 
   // Function to handle image tap
   void _handleImageTap(int index) {

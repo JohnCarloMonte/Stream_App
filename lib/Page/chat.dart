@@ -1,49 +1,134 @@
 import 'package:flutter/material.dart';
+import 'package:projecthit/Message.dart'; // Import your Message.dart file
 
-class Followers extends StatefulWidget {
-  const Followers({Key? key}) : super(key: key);
+class Chat extends StatefulWidget {
+  const Chat({Key? key}) : super(key: key);
 
   @override
-  _FollowersState createState() => _FollowersState();
+  _ChatState createState() => _ChatState();
 }
 
-class _FollowersState extends State<Followers> {
-  // Add your background image path
-  String backgroundImage = 'Icons/BG.png';
-
+class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(backgroundImage),
-            fit: BoxFit.cover,
-          ),
+      appBar: AppBar(
+        backgroundColor: Color(0xFF9e1c20),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () {
+            // Handle menu icon press
+          },
         ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20), // Add horizontal padding
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(
-                  Icons.mic,
-                  size: 120, // Adjust the size as needed
-                  color: Color(0xFF9e1c20), // Icon color
-                ),
-                const SizedBox(height: 20), // Add spacing
-                Text(
-                  "You have not subscribed to any streamers yet",
-                  textAlign: TextAlign.center, // Center-align the text horizontally
-                  style: TextStyle(
-                    color: Color(0xFF9e1c20), // Text color
-                    fontSize: 18,
-                  ),
-                ),
-              ],
-            ),
+        title: Text("Chat"),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              // Handle search icon press
+            },
           ),
+        ],
+      ),
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.only(top: 20.0, left: 16.0),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Friends",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+              height: 80.0,
+              margin: EdgeInsets.symmetric(horizontal: 16.0),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor: Colors.blue,
+                      // You can set user images here
+                    ),
+                  );
+                },
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(5.0),
+                  topRight: Radius.circular(5.0),
+                ),
+              ),
+              width: double.infinity,
+              height: 442.0,
+              child: ListView(
+                children: [
+                  // Dummy message layout with outline
+                  _buildMessageLayout("User 1", "This is a sample message."),
+                  _buildMessageLayout("User 2", "This is a very long message that will be shortened by replacing the overflowed text with ..."),
+                  // Add more messages as needed
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMessageLayout(String userName, String message) {
+    return GestureDetector(
+      onTap: () {
+        // Handle the click event, navigate to Message.dart
+
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 1.0),
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        ),
+        padding: EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 20.0,
+              backgroundColor: Colors.blue,
+              // You can set user images here
+            ),
+            SizedBox(width: 16.0),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    userName,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    message,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

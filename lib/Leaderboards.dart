@@ -40,7 +40,55 @@ class _LeaderboardsState extends State<Leaderboards> {
                 const SizedBox(height: 50),
                 Container(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start, // Align items to the left
+                    mainAxisAlignment: MainAxisAlignment.center, // Align items to the left
+                    children: [
+                      // Sample Photo with 8-bit box design (smaller)
+                      Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.yellow, // You can replace this with an actual image
+                        ),
+                      ),
+                      SizedBox(width: 10), // Add spacing between photo and details
+                      // User Details
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
+                        children: [
+                          Text(
+                            "Another User",
+                            style: GoogleFonts.pressStart2p(
+                              color: Color(0xFF9e1c20),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            "2.3M Followers",
+                            style: GoogleFonts.pressStart2p(
+                              color: Color(0xFF9e1c20),
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 3),
+                          Text(
+                            "Developer",
+                            style: GoogleFonts.pressStart2p(
+                              color: Color(0xFF9e1c20),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center, // Align items to the left
                     children: [
                       // Sample Photo with 8-bit box design (smaller)
                       Container(
@@ -88,7 +136,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                 const SizedBox(height: 20),
                 Container(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start, // Align items to the left
+                    mainAxisAlignment: MainAxisAlignment.center, // Align items to the left
                     children: [
                       // Sample Photo with 8-bit box design (smaller)
                       Container(
@@ -96,13 +144,13 @@ class _LeaderboardsState extends State<Leaderboards> {
                         width: 60,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey, // You can replace this with an actual image
+                          color: Colors.brown, // You can replace this with an actual image
                         ),
                       ),
                       SizedBox(width: 10), // Add spacing between photo and details
                       // User Details
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
+                        crossAxisAlignment: CrossAxisAlignment.center, // Align text to the left
                         children: [
                           Text(
                             "Another User",
@@ -136,55 +184,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                 const SizedBox(height: 20),
                 Container(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start, // Align items to the left
-                    children: [
-                      // Sample Photo with 8-bit box design (smaller)
-                      Container(
-                        height: 60,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey, // You can replace this with an actual image
-                        ),
-                      ),
-                      SizedBox(width: 10), // Add spacing between photo and details
-                      // User Details
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
-                        children: [
-                          Text(
-                            "Another User",
-                            style: GoogleFonts.pressStart2p(
-                              color: Color(0xFF9e1c20),
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            "2.3M Followers",
-                            style: GoogleFonts.pressStart2p(
-                              color: Color(0xFF9e1c20),
-                              fontSize: 14,
-                            ),
-                          ),
-                          const SizedBox(height: 3),
-                          Text(
-                            "Developer",
-                            style: GoogleFonts.pressStart2p(
-                              color: Color(0xFF9e1c20),
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start, // Align items to the left
+                    mainAxisAlignment: MainAxisAlignment.center, // Align items to the left
                     children: [
                       // Sample Photo with 8-bit box design (smaller)
                       Container(
