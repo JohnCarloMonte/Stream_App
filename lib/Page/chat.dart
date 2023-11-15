@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projecthit/Message.dart'; // Import your Message.dart file
+// Import your Message.dart file
 
 class Chat extends StatefulWidget {
   const Chat({Key? key}) : super(key: key);

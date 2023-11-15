@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projecthit/Page/chat.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,21 +32,30 @@ class _DashboardState extends State<Dashboard> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
-              'Icons/Search Icon.png', // Replace with the actual path to your first image
+              'Icons/Search Icon.png',
               width: 20,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              'Icons/Message icon Active.png', // Replace with the actual path to your second image
-              width: 20,
+          GestureDetector(
+            onTap: () {
+              // Navigate to the Chat project here
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Chat(), // Replace ChatScreen with the actual Chat project widget
+                ),
+              );
+            },
+              child: Image.asset(
+                'Icons/Message icon Active.png',
+                width: 20,
+              ),
             ),
-          ),
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
-              'Icons/Bell Icon.png', // Replace with the actual path to your third image
+              'Icons/Bell Icon.png',
               width: 20,
             ),
           ),
@@ -53,7 +63,7 @@ class _DashboardState extends State<Dashboard> {
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Image.asset(
-            'Icons/user.png', // Replace with the actual path to your left image
+            'Icons/user.png',
             width: 20,
           ),
         ),
@@ -74,6 +84,7 @@ class _DashboardState extends State<Dashboard> {
           ),
         ),
       ),
+
       body: Center(
         child: SingleChildScrollView(
           child: Column(

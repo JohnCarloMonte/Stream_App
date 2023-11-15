@@ -4,7 +4,6 @@ import 'package:projecthit/AGE.dart';
 import 'package:projecthit/home.dart';
 import 'package:projecthit/Loading.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_launcher_icons/main.dart';
 import 'dart:async';
 
 void main() {
