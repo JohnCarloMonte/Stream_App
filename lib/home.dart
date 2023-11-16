@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projecthit/Community.dart';
 import 'package:projecthit/Leaderboards.dart';
-
+import 'package:projecthit/Live.dart';
 import 'package:projecthit/Page/Follower.dart';
 import 'package:projecthit/Page/dashboard.dart';
 
@@ -15,6 +15,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int currentTab = 0;
+  bool _isClicked = false;
   final List<Widget> screens = [
     Dashboard(),
     Community(),
@@ -87,15 +88,46 @@ class _HomeState extends State<Home> {
                 ),
               ),
               // Add the image in the center
-              Expanded(
-                child: Image.asset(
-                  'Icons/Hit_Logo.png',
-                  height: 40,
-                  width: 40,
-                  fit: BoxFit.contain
-                  ,
+              GestureDetector(
+                onTapDown: (_) {
+                  setState(() {
+                    _isClicked = true;
+                  });
+                },
+                onTapUp: (_) {
+                  setState(() {
+                    _isClicked = false;
+                  });
+                  // Navigate to the Live project here
+                  // For example, using Navigator.push or Navigator.pushNamed
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Live()),
+                  );
+                },
+                onTapCancel: () {
+                  setState(() {
+                    _isClicked = false;
+                  });
+                },
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween<double>(begin: 1.0, end: _isClicked ? 0.8 : 1.0),
+                  duration: Duration(milliseconds: 100),
+                  builder: (BuildContext context, double value, Widget? child) {
+                    return Transform.scale(
+                      scale: value,
+                      child: child,
+                    );
+                  },
+                  child: Image.asset(
+                    'Icons/Hit_Logo.png',
+                    height: 50,
+                    width: 50,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
+
               Expanded(
                 child: MaterialButton(
                   minWidth: 40,

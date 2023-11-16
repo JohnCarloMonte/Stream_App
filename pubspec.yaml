@@ -40,6 +40,7 @@ dependencies:
   firebase_core: ^2.21.0
   #FIREBASE AUTH
   firebase_auth: ^4.12.1
+  screen_streamer: ^1.0.0+26
 
 dev_dependencies:
   flutter_test:
